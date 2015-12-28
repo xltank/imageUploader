@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="stylesheets/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="stylesheets/bootstrap-theme.min.css" type="text/css" rel="stylesheet">
+    <script src="javascripts/imageUploader.js"></script>
+
+</head>
+<body>
+
+    <div id="uploader1" style="width: 80px; height: 100px; margin: 8px 8px" class="pull-left"></div>
+    <div id="uploader2" style="width: 80px; height: 100px; margin: 8px 8px" class="pull-left"></div>
+    <div id="uploader3" style="width: 80px; height: 100px; margin: 8px 8px" class="pull-left"></div>
+    <div id="uploader4" style="width: 80px; height: 100px; margin: 8px 8px" class="pull-left"></div>
+
+    <script type="text/javascript">
+
+        function fileSelectedHandler(uploader, f, data){
+            console.log('selected:', f, data);
+            uploader.upload('http://localhost:3000/upload');
+        }
+
+        function uploadedHandler(uploader, xhr, data){
+            console.log('uploaded:', xhr.status, data);
+        }
+
+        function clearImageHandler(uploader, imageDom, data){
+            console.log('clear image:', imageDom, data);
+            imageDom.src = '';
+        }
+
+        function previewImageHandler(uploader, imageDom, data){
+            console.log('preview image:', imageDom, data);
+        }
+
+
+        new ImageUploader('uploader1', '', fileSelectedHandler, uploadedHandler, clearImageHandler, previewImageHandler, {name: 'image1'});
+        new ImageUploader('uploader2', '', fileSelectedHandler, uploadedHandler, clearImageHandler, previewImageHandler, {name: 'image2'});
+        new ImageUploader('uploader3', '', fileSelectedHandler, uploadedHandler, clearImageHandler, previewImageHandler, {name: 'image3'});
+        new ImageUploader('uploader4', '', fileSelectedHandler, uploadedHandler, clearImageHandler, previewImageHandler, {name: 'image4'});
+    </script>
+
+</body>
+</html>
